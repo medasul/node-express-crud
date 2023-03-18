@@ -8,3 +8,7 @@ export type ProductModel = {
   images: string [],
   price: number,
 };
+
+export type ProductData = Omit<ProductModel, 'id'>;
+
+export type PartialProductData = PartialRecursive<ProductData>;

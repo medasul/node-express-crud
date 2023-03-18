@@ -1,6 +1,8 @@
 import express from 'express';
 import getProducts from './queries/get-products';
 import getProduct from './queries/get-product';
+import createProduct from './mutations/create-product';
+import deleteProduct from './mutations/delete-product';
 
 const productsRouter = express.Router();
 
@@ -11,10 +13,7 @@ productsRouter.get('/', getProducts);
 productsRouter.get('/:id', getProduct);
 
 // create one
-productsRouter.post('/', (req, res) => {
-   console.log(req.body);
-  res.send('create one product');
-});
+productsRouter.post('/', createProduct);
 
 // update one
 productsRouter.patch('/:id', (_req, res) => {
@@ -22,8 +21,6 @@ productsRouter.patch('/:id', (_req, res) => {
 });
 
 // delete one
-productsRouter.delete('/:id', (_req, res) => {
-  res.send('deleted one product');
-});
+productsRouter.delete('/:id', deleteProduct);
 
 export default productsRouter;
