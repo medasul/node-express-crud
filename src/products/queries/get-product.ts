@@ -4,7 +4,7 @@ import { ProductModel } from 'products/types';
 
 const getProduct: RequestHandler<
   { id?: string },
-  ProductModel | { error: string },
+  ProductModel | ErrorResponse,
   undefined,
   {}
 > = (req, res) => {

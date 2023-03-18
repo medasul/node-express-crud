@@ -11,8 +11,8 @@ productsRouter.get('/', getProducts);
 productsRouter.get('/:id', getProduct);
 
 // create one
-productsRouter.post('/', (_req, res) => {
-  // console.log(req.body);
+productsRouter.post('/', (req, res) => {
+   console.log(req.body);
   res.send('create one product');
 });
 
