@@ -21,8 +21,7 @@ const deleteProduct: RequestHandler<
     return;
   }
 
-  const foundProduct = products[foundProductIndex];
-  products.splice(foundProductIndex, 1);
+  const [foundProduct] = products.splice(foundProductIndex, 1);
 
   res.status(200).json(foundProduct);
 };

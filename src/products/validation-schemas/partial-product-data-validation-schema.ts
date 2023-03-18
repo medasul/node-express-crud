@@ -1,13 +1,12 @@
-import { ProductData } from 'products/types';
+import { PartialProductData } from 'products/types';
 import * as yup from 'yup';
 
-const productDataValidationSchema: yup.ObjectSchema<ProductData> = yup.object({
+const partialProductDataValidationSchema: yup.ObjectSchema<PartialProductData> = yup.object({
   title: yup.string()
-    .required('title is required')
     .min(2, 'title must have at least 2 letters')
     .max(50, 'title can\'t have more than 50 letters'),
 
-  inventory: yup
+    inventory: yup
     .object({
       status: yup.string()
         .required('inventory.status is required')
@@ -18,22 +17,19 @@ const productDataValidationSchema: yup.ObjectSchema<ProductData> = yup.object({
       .required('units is required')
       .min(0, 'units must be greater than or equal to zero')
       .integer('units must be a whole positive number'),
-    })
-    .required('location is required'),
+    }),
 
   images: yup
-    .array(yup.string().required())
-    .required('images are required'),
+    .array(yup.string().required()),
 
   price: yup.number()
-    .required('price is required')
     .positive('price must be positive')
     .test(
       'priceFormat',
       'price can\'t have more than 2 decimal points',
-      (value) => Number(value.toFixed(2)) === value,
+      (value) => value === undefined || Number(value.toFixed(2)) === value,
     ),
 
 }).strict(true);
 
-export default productDataValidationSchema;
+export default partialProductDataValidationSchema;

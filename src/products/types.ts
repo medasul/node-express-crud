@@ -12,3 +12,5 @@ export type ProductModel = {
 export type ProductData = Omit<ProductModel, 'id'>;
 
 export type PartialProductData = PartialRecursive<ProductData>;
+
+export type ProductDataBody = PartialRecursive<ProductData>;
